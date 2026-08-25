@@ -811,6 +811,12 @@ footer{
 
 }
 
+/* BIRTHDAY LOCK */
+.btn.birthday-locked{opacity:.58;cursor:not-allowed;filter:saturate(.55);transform:none!important;box-shadow:none!important}
+.btn.birthday-locked:hover::before{transform:translateX(-120%)}
+#countdown.ready{animation:countdownReady .8s ease}
+@keyframes countdownReady{0%{transform:scale(1)}45%{transform:scale(1.08)}100%{transform:scale(1)}}
+
 /* MOBILE */
 
 @media(prefers-reduced-motion:reduce){
@@ -1408,67 +1414,40 @@ footer{
    COUNTDOWN
 ===================================================== */
 
-function updateCountdown(){
+const surpriseButton=document.querySelector('.hero-card .btn');
+let birthdayUnlocked=false;
 
-    const now = new Date();
-
-    let year = now.getFullYear();
-
-    let target = new Date(
-        year,
-        7,
-        26,
-        0,
-        0,
-        0
-    );
-
-    if(now >= target){
-
-        target = new Date(
-            year + 1,
-            7,
-            26,
-            0,
-            0,
-            0
-        );
-
-    }
-
-    const difference = target - now;
-
-    const days =
-        Math.floor(
-            difference / 86400000
-        );
-
-    const hours =
-        Math.floor(
-            difference / 3600000
-        ) % 24;
-
-    const minutes =
-        Math.floor(
-            difference / 60000
-        ) % 60;
-
-    const seconds =
-        Math.floor(
-            difference / 1000
-        ) % 60;
-
-    document.getElementById("countdown").textContent =
-        `${days}d ${hours}h ${minutes}m ${seconds}s until August 26`;
-
+function getBirthdayTarget(now=new Date()){
+    return new Date(now.getFullYear(),7,26,0,0,0,0);
 }
-
+function isBirthdayUnlocked(){
+    return new Date()>=getBirthdayTarget();
+}
+function updateCountdown(){
+    const now=new Date(), target=getBirthdayTarget(now);
+    const difference=target-now, countdown=document.getElementById("countdown");
+    if(difference<=0){
+        birthdayUnlocked=true;
+        countdown.textContent="It's August 26 — your surprise is ready! ♡";
+        countdown.classList.add("ready");
+        surpriseButton.disabled=false;
+        surpriseButton.classList.remove("birthday-locked");
+        surpriseButton.setAttribute("aria-disabled","false");
+        return;
+    }
+    birthdayUnlocked=false;
+    surpriseButton.disabled=true;
+    surpriseButton.classList.add("birthday-locked");
+    surpriseButton.setAttribute("aria-disabled","true");
+    const days=Math.floor(difference/86400000);
+    const hours=Math.floor(difference/3600000)%24;
+    const minutes=Math.floor(difference/60000)%60;
+    const seconds=Math.floor(difference/1000)%60;
+    countdown.textContent=`${days}d ${hours}h ${minutes}m ${seconds}s until August 26`;
+}
 updateCountdown();
+setInterval(updateCountdown,1000);
 
-setInterval(
-    updateCountdown,
-    1000
-);
 
 
 /* =====================================================
@@ -1503,6 +1482,8 @@ chapters.forEach(
 ===================================================== */
 
 function startJourney(){
+
+    if(!isBirthdayUnlocked()){ updateCountdown(); return; }
 
     const journey =
         document.getElementById("journey");
@@ -2065,6 +2046,29 @@ function triggerButtonEffect(button, event){
 document.querySelectorAll(".btn").forEach(button => {
     button.addEventListener("click", event => triggerButtonEffect(button, event));
 });
+
+/* COPY / RIGHT-CLICK DETERRENTS */
+const antiCopyMessage="olol wag mo copy code ko";
+document.addEventListener("contextmenu",e=>{e.preventDefault();showCopyMessage()});
+document.addEventListener("copy",e=>{e.preventDefault();showCopyMessage()});
+document.addEventListener("cut",e=>{e.preventDefault();showCopyMessage()});
+document.addEventListener("keydown",e=>{
+    const k=e.key.toLowerCase();
+    if(k==="f12"||(e.ctrlKey&&e.shiftKey&&["i","j","c"].includes(k))||(e.ctrlKey&&["u","s"].includes(k))){
+        e.preventDefault();showCopyMessage();
+    }
+});
+let copyMessageTimer;
+function showCopyMessage(){
+    let el=document.getElementById("copyMessage");
+    if(!el){
+        el=document.createElement("div"); el.id="copyMessage"; el.textContent=antiCopyMessage;
+        Object.assign(el.style,{position:"fixed",left:"50%",bottom:"28px",transform:"translate(-50%,20px)",opacity:"0",zIndex:"9999",padding:"12px 18px",borderRadius:"999px",background:"rgba(68,48,59,.94)",color:"#fff",font:"700 14px 'DM Sans',sans-serif",boxShadow:"0 10px 30px rgba(0,0,0,.18)",pointerEvents:"none",transition:"opacity .25s,transform .25s"});
+        document.body.appendChild(el);
+    }
+    clearTimeout(copyMessageTimer); el.style.opacity="1"; el.style.transform="translate(-50%,0)";
+    copyMessageTimer=setTimeout(()=>{el.style.opacity="0";el.style.transform="translate(-50%,20px)"},1600);
+}
 
 /* =====================================================
    INITIAL STATE
