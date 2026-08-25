@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<title>Happy 19th, Reighn Yzabelle</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --pink:#d85c91;
+    --rose:#a94770;
+    --purple:#8a72d7;
+    --text:#44303b;
+    --muted:#806a74;
+    --bg:#fff9fc;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+
+    background:
+        radial-gradient(circle at 8% 10%,#f8d5e5 0,transparent 27%),
+        radial-gradient(circle at 92% 20%,#ded8fa 0,transparent 27%),
+        radial-gradient(circle at 50% 100%,#ffe9dc 0,transparent 30%);
+}
+
+body:after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    opacity:.16;
+
+    background-image:
+        radial-gradient(#bd6b8e 1px,transparent 1px);
+
+    background-size:28px 28px;
+}
+
+/* NAVIGATION */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    z-index:100;
+
+    padding:14px 6%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:#ffffffc7;
+
+
+    border-bottom:1px solid #ffffff;
+}
+
+.logo{
+    font-weight:800;
+    color:var(--rose);
+}
+
+nav a{
+    color:#654a56;
+    text-decoration:none;
+    margin-left:22px;
+    font-size:.9rem;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+
+    display:grid;
+    place-items:center;
+
+    text-align:center;
+
+    padding:110px 20px 70px;
+}
+
+.glass{
+    background:#ffffffbc;
+
+
+    border:1px solid #fff;
+
+    border-radius:34px;
+
+    box-shadow:
+        0 25px 80px #8d41651c;
+}
+
+.hero-card{
+    max-width:900px;
+    padding:60px 35px;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:8px 14px;
+
+    border-radius:99px;
+
+    background:#fbe2ec;
+
+    color:#ad4b74;
+
+    font-size:.82rem;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+}
+
+h1,h2,h3{
+    font-family:"Playfair Display",serif;
+}
+
+h1{
+    font-size:clamp(3.2rem,8vw,6.8rem);
+
+    line-height:.9;
+
+    color:#ae4875;
+}
+
+.hero p{
+    max-width:680px;
+
+    margin:25px auto;
+
+    line-height:1.8;
+
+    color:#715b65;
+}
+
+.countdown{
+    font-weight:800;
+
+    color:#98466d;
+
+    margin:18px 0 25px;
+}
+
+/* BUTTONS */
+
+.btn{
+    border:0;
+
+    cursor:pointer;
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    padding:13px 21px;
+
+    border-radius:99px;
+
+    font:inherit;
+
+    font-weight:800;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--purple)
+        );
+
+    box-shadow:
+        0 12px 28px #9e568d25;
+
+    transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.btn.secondary{
+    color:#a44870;
+
+    background:#fff;
+
+    border:1px solid #ead1dd;
+
+    box-shadow:none;
+}
+
+/* SECTIONS */
+
+section{
+    max-width:1050px;
+
+    margin:auto;
+
+    padding:90px 6%;
+}
+
+.section-title{
+    text-align:center;
+
+    font-size:2.8rem;
+
+    color:#99486f;
+
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+
+    color:var(--muted);
+
+    margin-bottom:38px;
+}
+
+/* CHAPTER SECTION */
+
+#journey{
+    display:none;
+}
+
+#journey.show{
+    display:block;
+}
+
+/* CHAPTER */
+
+.chapter{
+    display:none;
+
+    animation:chapterEnter .35s ease;
+}
+
+.chapter.active{
+    display:block;
+}
+
+@keyframes chapterEnter{
+
+    from{
+        opacity:0;
+        transform:translateX(35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+/* PROGRESS */
+
+.progress{
+    display:flex;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-bottom:25px;
+}
+
+.dot{
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#ead7df;
+
+    transition:.3s;
+}
+
+.dot.active{
+    width:30px;
+
+    border-radius:99px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--pink),
+            var(--purple)
+        );
+}
+
+/* CHAPTER CARD */
+
+.chapter-card{
+    background:#fff;
+
+    border:1px solid #eedbe4;
+
+    border-radius:30px;
+
+    padding:38px;
+
+    box-shadow:
+        0 18px 55px #8f486515;
+
+    display:grid;
+
+    grid-template-columns:115px 1fr;
+
+    gap:25px;
+}
+
+.number{
+    width:100px;
+
+    height:100px;
+
+    border-radius:28px;
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:2rem;
+
+    font-weight:800;
+
+    color:#9f4b71;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8d8e6,
+            #e3ddfb
+        );
+}
+
+.chapter h3{
+    font-size:2rem;
+
+    color:#a34770;
+
+    margin-bottom:12px;
+}
+
+.chapter p{
+    line-height:1.85;
+
+    color:#705863;
+}
+
+.tag{
+    display:inline-block;
+
+    margin-top:16px;
+
+    padding:7px 12px;
+
+    border-radius:99px;
+
+    background:#fff1f6;
+
+    color:#ad4b74;
+
+    font-size:.78rem;
+
+    font-weight:700;
+}
+
+/* SONG AREA */
+
+.song-area{
+    margin-top:25px;
+
+    padding:20px;
+
+    background:#fff5f9;
+
+    border:1px solid #f0dbe5;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    display:none;
+}
+
+.song-area.show{
+    display:block;
+}
+
+.song-title{
+    color:#a34770;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+}
+
+.song-status{
+    color:#806974;
+
+    font-size:.85rem;
+
+    margin-bottom:15px;
+}
+
+.youtube-player{
+    width:100%;
+
+    max-width:560px;
+
+    aspect-ratio:16/9;
+
+    margin:auto;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px #8f486518;
+}
+
+.youtube-player iframe{
+    width:100%;
+
+    height:100%;
+
+    border:0;
+}
+
+.song-fallback{
+    display:grid;
+    gap:12px;
+    justify-items:center;
+    margin:16px auto 0;
+    max-width:560px;
+    color:#806974;
+    font-size:.85rem;
+    line-height:1.5;
+}
+.song-fallback[hidden]{display:none}
+.song-fallback .btn{margin-top:0}
+
+/* PERFORMANCE */
+#journey,#letterSection,#funSection{contain:layout paint}
+.chapter-card,.letter,.fun-card,.glass{contain:layout paint}
+.particle{will-change:transform,opacity}
+@media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+    }
+}
+
+/* CONTROLS */
+
+.controls{
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:24px;
+}
+
+.chapter-count{
+    text-align:center;
+
+    margin-top:12px;
+
+    color:#957581;
+
+    font-size:.85rem;
+}
+
+.hint{
+    text-align:center;
+
+    color:#a34a73;
+
+    font-weight:700;
+
+    margin-top:18px;
+}
+
+/* LETTER */
+
+#letterSection{
+    display:none;
+}
+
+#letterSection.show{
+    display:block;
+}
+
+.letter{
+    background:#fff;
+
+    border:1px solid #eedbe4;
+
+    border-radius:30px;
+
+    padding:42px;
+
+    box-shadow:
+        0 18px 55px #8f486515;
+
+    line-height:1.9;
+
+    animation:fadeUp .45s ease;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:translateY(0);
+    }
+
+}
+
+.letter p{
+    margin-bottom:17px;
+}
+
+.signature{
+    font-family:"Playfair Display",serif;
+
+    color:#a34770;
+
+    font-size:1.35rem;
+}
+
+.continue{
+    text-align:center;
+
+    margin-top:28px;
+}
+
+/* FUN ZONE */
+
+#funSection{
+    display:none;
+}
+
+#funSection.show{
+    display:block;
+}
+
+.fun-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(245px,1fr)
+        );
+
+    gap:20px;
+}
+
+.fun-card{
+    background:#fff;
+
+    border:1px solid #eedbe4;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:
+        0 14px 40px #8f486510;
+}
+
+.fun-card h3{
+    font-size:1.4rem;
+
+    color:#a34770;
+
+    margin-bottom:9px;
+}
+
+.fun-card p{
+    color:#806974;
+
+    line-height:1.6;
+
+    font-size:.92rem;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+
+    padding:12px;
+
+    margin-top:12px;
+
+    border:1px solid #dfcbd5;
+
+    border-radius:13px;
+
+    font:inherit;
+
+    background:#fff;
+
+    outline:none;
+}
+
+textarea{
+    min-height:95px;
+
+    resize:vertical;
+}
+
+.fun-card .btn{
+    margin-top:10px;
+}
+
+.output{
+    margin-top:12px;
+
+    min-height:25px;
+
+    color:#a34770;
+
+    font-weight:700;
+
+    line-height:1.5;
+}
+
+.fortune{
+    min-height:90px;
+
+    margin-top:13px;
+
+    padding:17px;
+
+    border-radius:17px;
+
+    background:#fff3f7;
+
+    display:grid;
+
+    place-items:center;
+
+    text-align:center;
+
+    color:#934667;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+
+    padding:60px 20px 80px;
+
+    color:#866c77;
+}
+
+/* SUBTLE PARTICLES */
+
+#particles{
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:150;
+
+    overflow:hidden;
+}
+
+.particle{
+    position:absolute;
+
+    bottom:-30px;
+
+    animation:rise linear forwards;
+}
+
+@keyframes rise{
+
+    to{
+        transform:
+            translateY(-115vh)
+            rotate(360deg);
+
+        opacity:0;
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+    nav .links{
+        display:none;
+    }
+
+    .hero-card{
+        padding:45px 22px;
+    }
+
+    section{
+        padding:70px 5%;
+    }
+
+    .chapter-card{
+        grid-template-columns:1fr;
+
+        padding:28px;
+    }
+
+    .number{
+        width:75px;
+
+        height:75px;
+
+        border-radius:22px;
+    }
+
+    .chapter h3{
+        font-size:1.7rem;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        Reighn's 19th
+    </div>
+
+    <div class="links">
+
+        <a href="#journey">
+            Her Story
+        </a>
+
+        <a href="#letterSection">
+            Letter
+        </a>
+
+        <a href="#funSection">
+            Fun Zone
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div id="particles"></div>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="glass hero-card">
+
+        <span class="badge">
+            AUGUST 26 • BIRTHDAY SPECIAL
+        </span>
+
+        <h1>
+            Happy 19th,<br>
+            Reighn Yzabelle!
+        </h1>
+
+        <p>
+            A small birthday experience made especially for you by your friend
+            <b>Astro</b>. Start the journey and go through each chapter one at a time.
+        </p>
+
+        <div
+            class="countdown"
+            id="countdown">
+        </div>
+
+        <button
+            class="btn"
+            onclick="startJourney()">
+
+            Open Your Surprise
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ========================= -->
+<!-- CHAPTERS -->
+<!-- ========================= -->
+
+<section id="journey">
+
+    <h2 class="section-title">
+        Your 19th-Year Story
+    </h2>
+
+    <p class="subtitle">
+        Three chapters. One year. Take your time.
+    </p>
+
+
+    <!-- PROGRESS -->
+
+    <div
+        class="progress"
+        id="progress">
+    </div>
+
+
+    <!-- CHAPTER 1 -->
+
+    <article class="chapter active">
+
+        <div class="chapter-card">
+
+            <div class="number">
+                01
+            </div>
+
+            <div>
+
+                <h3>
+                    Karma
+                </h3>
+
+                <p>
+                    You met Karma, and eventually the two of you became a
+                    mutual understanding. It was one of those unexpected
+                    connections that became part of your year and gave you
+                    another story to remember.
+                </p>
+
+                <span class="tag">
+                    THE UNEXPECTED CONNECTION
+                </span>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- CHAPTER 2 -->
+
+    <article class="chapter">
+
+        <div class="chapter-card">
+
+            <div class="number">
+                02
+            </div>
+
+            <div>
+
+                <h3>
+                    Kyo
+                </h3>
+
+                <p>
+                    Then came Kyo. Things became complicated, feelings got
+                    involved, and the experience eventually left you
+                    heartbroken. Some people become lessons instead of
+                    forever chapters, and this chapter reminded you to
+                    protect your heart and remember what you deserve.
+                </p>
+
+                <span class="tag">
+                    THE PLOT TWIST
+                </span>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- CHAPTER 3 / OLZEN -->
+
+    <article class="chapter">
+
+        <div class="chapter-card">
+
+            <div class="number">
+                03
+            </div>
+
+            <div>
+
+                <h3>
+                    Olzen
+                </h3>
+
+                <p>
+                    And then there was Olzen — the chapter where you risked
+                    it all and went all the way to Malabon just to meet him.
+                    You gave the connection a genuine chance, but he didn't
+                    value you the way you deserved, and eventually things ended.
+                    At least you can say you gave it your all.
+                </p>
+
+                <span class="tag">
+                    THE MALABON ARC
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- SONG -->
+
+        <div
+            class="song-area"
+            id="songArea">
+
+            <div class="song-title">
+                A song for this chapter
+            </div>
+
+            <div class="song-status">
+                Playing...
+            </div>
+
+            <div
+                class="youtube-player"
+                id="youtubePlayer">
+            </div>
+
+            <div class="song-fallback" id="songFallback" hidden>
+                <p id="songFallbackText"></p>
+                <a class="btn secondary"
+                   id="youtubeLink"
+                   href="https://www.youtube.com/watch?v=lY5V4hSLWY8"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Watch the song on YouTube
+                </a>
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- CONTROLS -->
+
+    <div class="controls">
+
+        <button
+            class="btn secondary"
+            id="prevBtn"
+            onclick="previousChapter()">
+
+            Previous
+
+        </button>
+
+
+        <button
+            class="btn"
+            id="nextBtn"
+            onclick="nextChapter()">
+
+            Next Chapter
+
+        </button>
+
+    </div>
+
+
+    <div
+        class="chapter-count"
+        id="chapterCount">
+
+        Chapter 1 of 3
+
+    </div>
+
+
+    <div
+        class="hint"
+        id="hint">
+
+        Click Next Chapter to continue.
+
+    </div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- LETTER -->
+<!-- ========================= -->
+
+<section id="letterSection">
+
+    <h2 class="section-title">
+        A Letter From Astro
+    </h2>
+
+    <p class="subtitle">
+        Now that you've reached the end of the chapters, this part is for you.
+    </p>
+
+
+    <div class="letter">
+
+        <p>
+            Dear Reighn,
+        </p>
+
+        <p>
+            Happy 19th birthday! Somehow this year already has enough stories
+            for an entire season of a show.
+        </p>
+
+        <p>
+            You met people, caught feelings, got hurt, took chances, and even
+            went all the way to Malabon for someone. But none of those
+            experiences determine your worth. They are just chapters in a much
+            bigger story, and you still get to decide what happens next.
+        </p>
+
+        <p>
+            As your friend Astro, I hope 19 gives you better people,
+            genuine happiness, fewer unnecessary plot twists, and no more
+            going out of your way for someone who doesn't know your value.
+        </p>
+
+        <p>
+            Keep growing, keep laughing, and keep being yourself. The right
+            people will appreciate the effort and kindness you give instead
+            of taking it for granted.
+        </p>
+
+        <p>
+            I hope this birthday reminds you that even when some chapters
+            don't end the way you wanted, the story itself is still worth
+            continuing.
+        </p>
+
+        <p>
+            <b>
+                Happy birthday, Reighn Yzabelle Pagdanganan.
+            </b>
+        </p>
+
+        <p class="signature">
+            — Astro
+        </p>
+
+    </div>
+
+
+    <div class="continue">
+
+        <button
+            class="btn"
+            onclick="showFunZone()">
+
+            Continue to the Fun Zone
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- FUN ZONE -->
+<!-- ========================= -->
+
+<section id="funSection">
+
+    <h2 class="section-title">
+        Fun Zone
+    </h2>
+
+    <p class="subtitle">
+        You've finished the story. Now you get to play around.
+    </p>
+
+
+    <div class="fun-grid">
+
+
+        <!-- FORTUNE -->
+
+        <div class="fun-card">
+
+            <h3>
+                Birthday Fortune
+            </h3>
+
+            <p>
+                Let the completely unofficial birthday machine predict
+                your 19th year.
+            </p>
+
+            <button
+                class="btn"
+                onclick="fortune()">
+
+                Reveal Fortune
+
+            </button>
+
+            <div
+                class="fortune"
+                id="fortune">
+
+                Your fortune is waiting...
+
+            </div>
+
+        </div>
+
+
+        <!-- ENERGY -->
+
+        <div class="fun-card">
+
+            <h3>
+                Your 19th-Year Energy
+            </h3>
+
+            <p>
+                Choose the energy you want to carry into this next chapter.
+            </p>
+
+            <select id="energy">
+
+                <option>
+                    Peace and healing
+                </option>
+
+                <option>
+                    Main character energy
+                </option>
+
+                <option>
+                    Adventure
+                </option>
+
+                <option>
+                    Money and success
+                </option>
+
+                <option>
+                    Love, but with standards
+                </option>
+
+            </select>
+
+            <button
+                class="btn"
+                onclick="lockEnergy()">
+
+                Lock It In
+
+            </button>
+
+            <div
+                class="output"
+                id="energyOutput">
+            </div>
+
+        </div>
+
+
+        <!-- FUTURE MESSAGE -->
+
+        <div class="fun-card">
+
+            <h3>
+                Message to Future Reighn
+            </h3>
+
+            <p>
+                Write something that you want your 20-year-old self to read.
+            </p>
+
+            <textarea
+                id="futureMessage"
+                placeholder="Dear future me...">
+            </textarea>
+
+            <button
+                class="btn"
+                onclick="saveMessage()">
+
+                Save Message
+
+            </button>
+
+            <div
+                class="output"
+                id="messageOutput">
+            </div>
+
+        </div>
+
+
+        <!-- ASK ASTRO -->
+
+        <div class="fun-card">
+
+            <h3>
+                Ask Astro
+            </h3>
+
+            <p>
+                Ask a completely random question and receive an equally
+                random answer.
+            </p>
+
+            <input
+                id="astroQuestion"
+                placeholder="Ask anything...">
+
+            <button
+                class="btn"
+                onclick="askAstro()">
+
+                Ask
+
+            </button>
+
+            <div
+                class="output"
+                id="astroAnswer">
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    Made with friendship and HTML by Astro.
+
+    <br>
+
+    <small>
+        August 26 • Reighn's 19th Birthday
+    </small>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
+function updateCountdown(){
+
+    const now = new Date();
+
+    let year = now.getFullYear();
+
+    let target = new Date(
+        year,
+        7,
+        26,
+        0,
+        0,
+        0
+    );
+
+    if(now >= target){
+
+        target = new Date(
+            year + 1,
+            7,
+            26,
+            0,
+            0,
+            0
+        );
+
+    }
+
+    const difference = target - now;
+
+    const days =
+        Math.floor(
+            difference / 86400000
+        );
+
+    const hours =
+        Math.floor(
+            difference / 3600000
+        ) % 24;
+
+    const minutes =
+        Math.floor(
+            difference / 60000
+        ) % 60;
+
+    const seconds =
+        Math.floor(
+            difference / 1000
+        ) % 60;
+
+    document.getElementById("countdown").textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s until August 26`;
+
+}
+
+updateCountdown();
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+/* =====================================================
+   CHAPTER SYSTEM
+===================================================== */
+
+let currentChapter = 0;
+
+const chapters =
+    document.querySelectorAll(".chapter");
+
+const progress =
+    document.getElementById("progress");
+
+
+chapters.forEach(
+    function(){
+
+        const dot =
+            document.createElement("div");
+
+        dot.className = "dot";
+
+        progress.appendChild(dot);
+
+    }
+);
+
+
+/* =====================================================
+   START JOURNEY
+===================================================== */
+
+function startJourney(){
+
+    const journey =
+        document.getElementById("journey");
+
+    journey.classList.add("show");
+
+    currentChapter = 0;
+
+    renderChapter();
+
+    journey.scrollIntoView({
+        behavior:"smooth"
+    });
+
+    softCelebration();
+
+}
+
+
+/* =====================================================
+   RENDER CHAPTER
+===================================================== */
+
+function renderChapter(){
+
+    chapters.forEach(
+        function(chapter,index){
+
+            chapter.classList.toggle(
+                "active",
+                index === currentChapter
+            );
+
+        }
+    );
+
+
+    document
+        .querySelectorAll(".dot")
+        .forEach(
+            function(dot,index){
+
+                dot.classList.toggle(
+                    "active",
+                    index === currentChapter
+                );
+
+            }
+        );
+
+
+    document.getElementById(
+        "chapterCount"
+    ).textContent =
+        `Chapter ${currentChapter + 1} of ${chapters.length}`;
+
+
+    document.getElementById(
+        "prevBtn"
+    ).style.visibility =
+        currentChapter === 0
+            ? "hidden"
+            : "visible";
+
+
+    const nextButton =
+        document.getElementById("nextBtn");
+
+
+    if(currentChapter === chapters.length - 1){
+
+        nextButton.textContent =
+            "Finish the Chapters";
+
+        document.getElementById(
+            "hint"
+        ).textContent =
+            "Click Finish the Chapters to stop the song and continue to Astro's letter.";
+
+    }
+
+    else{
+
+        nextButton.textContent =
+            "Next Chapter";
+
+        document.getElementById(
+            "hint"
+        ).textContent =
+            "Click Next Chapter to continue.";
+
+    }
+
+}
+
+
+/* =====================================================
+   NEXT CHAPTER
+===================================================== */
+
+function nextChapter(){
+
+    /*
+       If she is currently on Chapter 1 or Chapter 2,
+       simply move forward.
+    */
+
+    if(currentChapter < chapters.length - 1){
+
+        currentChapter++;
+
+        renderChapter();
+
+
+        /*
+           If Chapter 3 / Olzen is now showing,
+           start the YouTube song.
+        */
+
+        if(currentChapter === 2){
+
+            startOlzenSong();
+
+        }
+
+
+        document.getElementById(
+            "journey"
+        ).scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+    }
+
+
+    /*
+       If she clicks Next while on Olzen,
+       stop the song and show the letter.
+    */
+
+    else{
+
+        stopOlzenSong();
+
+        showLetter();
+
+    }
+
+}
+
+
+/* =====================================================
+   PREVIOUS CHAPTER
+===================================================== */
+
+function previousChapter(){
+
+    if(currentChapter > 0){
+
+        /*
+           If leaving Olzen backwards,
+           stop the song.
+        */
+
+        if(currentChapter === 2){
+
+            stopOlzenSong();
+
+        }
+
+
+        currentChapter--;
+
+        renderChapter();
+
+
+        document
+            .getElementById("journey")
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
+
+    }
+
+}
+
+
+/* =====================================================
+   YOUTUBE SONG
+===================================================== */
+
+/*
+   YOUR VIDEO:
+
+   https://youtu.be/lY5V4hSLWY8
+
+   Video ID:
+   lY5V4hSLWY8
+*/
+
+let youtubeIframe = null;
+const YOUTUBE_VIDEO_ID = "lY5V4hSLWY8";
+const YOUTUBE_URL = `https://www.youtube.com/watch?v=${YOUTUBE_VIDEO_ID}`;
+
+function startOlzenSong(){
+    const songArea = document.getElementById("songArea");
+    const player = document.getElementById("youtubePlayer");
+    const fallback = document.getElementById("songFallback");
+    const fallbackText = document.getElementById("songFallbackText");
+    const youtubeLink = document.getElementById("youtubeLink");
+    const status = document.querySelector(".song-status");
+
+    songArea.classList.add("show");
+    youtubeLink.href = YOUTUBE_URL;
+
+    // YouTube Error 153 happens when an embed request has no HTTP Referer.
+    // A file:// page cannot provide one, so use a reliable YouTube fallback.
+    if (location.protocol === "file:") {
+        player.replaceChildren();
+        fallback.hidden = false;
+        fallbackText.textContent =
+            "This page is being opened directly as a file. YouTube requires an HTTP referrer for embedded playback, so use the button below or run this site through a local web server.";
+        status.textContent = "Ready — open the song on YouTube.";
+        youtubeIframe = null;
+        return;
+    }
+
+    fallback.hidden = true;
+    player.replaceChildren();
+
+    const iframe = document.createElement("iframe");
+    const params = new URLSearchParams({
+        autoplay: "1",
+        controls: "1",
+        rel: "0",
+        playsinline: "1",
+        modestbranding: "1"
+    });
+
+    if (/^https?:$/.test(location.protocol) && location.origin) {
+        params.set("origin", location.origin);
+    }
+
+    iframe.src =
+        `https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?${params}`;
+    iframe.title = "Birthday song for Reighn";
+    iframe.loading = "eager";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.allow =
+        "autoplay; encrypted-media; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+
+    player.appendChild(iframe);
+    youtubeIframe = iframe;
+    status.textContent = "Playing for the Olzen chapter...";
+}
+
+function stopOlzenSong(){
+    const player = document.getElementById("youtubePlayer");
+    const songArea = document.getElementById("songArea");
+    const fallback = document.getElementById("songFallback");
+
+    player.replaceChildren();
+    fallback.hidden = true;
+    youtubeIframe = null;
+    songArea.classList.remove("show");
+}
+
+/* =====================================================
+   SHOW LETTER
+===================================================== */
+
+function showLetter(){
+
+    /*
+       Song is already stopped above.
+    */
+
+    const letter =
+        document.getElementById(
+            "letterSection"
+        );
+
+    letter.classList.add("show");
+
+    letter.scrollIntoView({
+        behavior:"smooth"
+    });
+
+    softCelebration();
+
+}
+
+
+/* =====================================================
+   FUN ZONE
+===================================================== */
+
+function showFunZone(){
+
+    const fun =
+        document.getElementById(
+            "funSection"
+        );
+
+    fun.classList.add("show");
+
+    fun.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   BIRTHDAY FORTUNE
+===================================================== */
+
+const fortunes = [
+
+    "Your 19th year will teach you that peace is better than unnecessary drama.",
+
+    "A new memory will eventually become one of your favorite memories.",
+
+    "Your next chapter will be better when you stop settling for less than you deserve.",
+
+    "Something unexpected will make you very happy this year.",
+
+    "Your main-character era is officially beginning.",
+
+    "The universe recommends higher standards and lower stress."
+
+];
+
+
+function fortune(){
+
+    document.getElementById(
+        "fortune"
+    ).textContent =
+        fortunes[
+            Math.floor(
+                Math.random() *
+                fortunes.length
+            )
+        ];
+
+}
+
+
+/* =====================================================
+   ENERGY
+===================================================== */
+
+function lockEnergy(){
+
+    const value =
+        document.getElementById(
+            "energy"
+        ).value;
+
+
+    document.getElementById(
+        "energyOutput"
+    ).textContent =
+        `19th-year energy selected: ${value}.`;
+
+}
+
+
+/* =====================================================
+   FUTURE MESSAGE
+===================================================== */
+
+function saveMessage(){
+
+    const value =
+        document.getElementById(
+            "futureMessage"
+        ).value.trim();
+
+
+    document.getElementById(
+        "messageOutput"
+    ).textContent =
+        value
+            ? `Saved for future you: "${value}"`
+            : "Write a message first.";
+
+}
+
+
+/* =====================================================
+   ASK ASTRO
+===================================================== */
+
+const answers = [
+
+    "Astro has consulted the universe. The answer is probably yes.",
+
+    "The birthday council has decided that you deserve better.",
+
+    "According to completely unreliable science: yes.",
+
+    "The universe says to trust yourself on this one.",
+
+    "Astro doesn't know, but somehow you'll figure it out.",
+
+    "That sounds like a problem for 20-year-old Reighn."
+
+];
+
+
+function askAstro(){
+
+    const question =
+        document.getElementById(
+            "astroQuestion"
+        ).value.trim();
+
+
+    document.getElementById(
+        "astroAnswer"
+    ).textContent =
+        question
+            ? answers[
+                Math.floor(
+                    Math.random() *
+                    answers.length
+                )
+              ]
+            : "Ask something first.";
+
+}
+
+
+/* =====================================================
+   SUBTLE CELEBRATION
+===================================================== */
+
+const particles = document.getElementById("particles");
+
+function softCelebration(){
+
+    const symbols = [
+        "·",
+        "✦",
+        "♡",
+        "•"
+    ];
+
+
+    for(
+        let i = 0;
+        i < 12;
+        i++
+    ){
+
+        setTimeout(
+            function(){
+
+                const particle =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                particle.className =
+                    "particle";
+
+
+                particle.textContent =
+                    symbols[
+                        Math.floor(
+                            Math.random() *
+                            symbols.length
+                        )
+                    ];
+
+
+                particle.style.left =
+                    Math.random() *
+                    100 +
+                    "%";
+
+
+                particle.style.fontSize =
+                    (
+                        13 +
+                        Math.random() *
+                        12
+                    ) +
+                    "px";
+
+
+                particle.style.color =
+                    "#c86691";
+
+
+                particle.style.animationDuration =
+                    (
+                        4 +
+                        Math.random() *
+                        3
+                    ) +
+                    "s";
+
+
+                particles.appendChild(particle);
+
+
+                setTimeout(
+                    function(){
+
+                        particle.remove();
+
+                    },
+                    7500
+                );
+
+            },
+            i * 50
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   INITIAL STATE
+===================================================== */
+
+renderChapter();
+
+</script>
+
+</body>
+</html>
