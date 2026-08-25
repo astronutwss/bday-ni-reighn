@@ -84,6 +84,9 @@ nav{
 
     background:#ffffffc7;
 
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    will-change:transform;
 
     border-bottom:1px solid #ffffff;
 }
@@ -116,6 +119,7 @@ nav a{
 .glass{
     background:#ffffffbc;
 
+    backdrop-filter:blur(18px);
 
     border:1px solid #fff;
 
@@ -209,11 +213,64 @@ h1{
     box-shadow:
         0 12px 28px #9e568d25;
 
-    transition:transform .2s ease, box-shadow .2s ease;
+    transition:.25s;
+}
+
+.btn{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+    will-change:transform;
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.32) 48%,transparent 76%);
+    transform:translateX(-120%);
+    transition:transform .65s ease;
+    pointer-events:none;
+    z-index:-1;
 }
 
 .btn:hover{
-    transform:translateY(-3px);
+    transform:translateY(-3px) scale(1.025);
+    box-shadow:0 15px 34px #9e568d35;
+}
+
+.btn:hover::before{
+    transform:translateX(120%);
+}
+
+.btn:active{
+    transform:translateY(-1px) scale(.98);
+}
+
+.btn.ripple-active{
+    animation:buttonPop .42s ease;
+}
+
+@keyframes buttonPop{
+    0%{transform:scale(1)}
+    45%{transform:scale(.95)}
+    100%{transform:scale(1)}
+}
+
+.btn-ripple{
+    position:absolute;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:rgba(255,255,255,.55);
+    transform:translate(-50%,-50%) scale(0);
+    animation:ripple .65s ease-out forwards;
+    pointer-events:none;
+    z-index:2;
+}
+
+@keyframes ripple{
+    to{transform:translate(-50%,-50%) scale(15);opacity:0}
 }
 
 .btn.secondary{
@@ -269,11 +326,34 @@ section{
 .chapter{
     display:none;
 
-    animation:chapterEnter .35s ease;
+    animation:chapterEnter .65s ease;
 }
 
 .chapter.active{
     display:block;
+}
+
+.chapter.chapter-transition{
+    animation:chapterEnter .7s cubic-bezier(.22,.8,.25,1) both;
+}
+
+#journey.journey-opening{
+    animation:journeyReveal .8s cubic-bezier(.22,.8,.25,1) both;
+}
+
+@keyframes journeyReveal{
+    from{opacity:0;transform:translateY(35px) scale(.985)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.progress .dot.active{
+    animation:dotActivate .55s cubic-bezier(.22,.8,.25,1);
+}
+
+@keyframes dotActivate{
+    0%{transform:scale(.75);opacity:.65}
+    55%{transform:scale(1.12)}
+    100%{transform:scale(1);opacity:1}
 }
 
 @keyframes chapterEnter{
@@ -466,7 +546,6 @@ section{
 
     border:0;
 }
-
 .song-fallback{
     display:grid;
     gap:12px;
@@ -477,21 +556,9 @@ section{
     font-size:.85rem;
     line-height:1.5;
 }
-.song-fallback[hidden]{display:none}
-.song-fallback .btn{margin-top:0}
+.song-fallback[hidden]{display:none;}
+.song-fallback .btn{margin-top:0;}
 
-/* PERFORMANCE */
-#journey,#letterSection,#funSection{contain:layout paint}
-.chapter-card,.letter,.fun-card,.glass{contain:layout paint}
-.particle{will-change:transform,opacity}
-@media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    *,*::before,*::after{
-        animation-duration:.01ms!important;
-        animation-iteration-count:1!important;
-        transition-duration:.01ms!important;
-    }
-}
 
 /* CONTROLS */
 
@@ -549,7 +616,7 @@ section{
 
     line-height:1.9;
 
-    animation:fadeUp .45s ease;
+    animation:fadeUp .7s ease;
 }
 
 @keyframes fadeUp{
@@ -725,6 +792,7 @@ footer{
 
 .particle{
     position:absolute;
+    will-change:transform,opacity;
 
     bottom:-30px;
 
@@ -744,6 +812,11 @@ footer{
 }
 
 /* MOBILE */
+
+@media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .btn,.chapter,.journey-opening,.btn::before,.btn-ripple{animation:none!important;transition:none!important}
+}
 
 @media(max-width:650px){
 
@@ -779,6 +852,16 @@ footer{
 
 }
 
+
+/* PERFORMANCE + ACCESSIBILITY: normal animations/effects stay enabled */
+@media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+    }
+}
 </style>
 </head>
 
@@ -996,11 +1079,9 @@ footer{
 
             <div class="song-fallback" id="songFallback" hidden>
                 <p id="songFallbackText"></p>
-                <a class="btn secondary"
-                   id="youtubeLink"
+                <a class="btn secondary" id="youtubeLink"
                    href="https://www.youtube.com/watch?v=lY5V4hSLWY8"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                   target="_blank" rel="noopener noreferrer">
                     Watch the song on YouTube
                 </a>
             </div>
@@ -1074,23 +1155,23 @@ footer{
     <div class="letter">
 
         <p>
-            Dear Reighn,
+            Dear reirei,
         </p>
 
         <p>
-            Happy 19th birthday! Somehow this year already has enough stories
-            for an entire season of a show.
+            Happy 19th birthday! be sana di kana tanga sa 
+            pag ibig this na 19 kana ahh
         </p>
 
         <p>
-            You met people, caught feelings, got hurt, took chances, and even
+            You met people this year madami, caught feelings, got hurt, took chances, and even
             went all the way to Malabon for someone. But none of those
             experiences determine your worth. They are just chapters in a much
             bigger story, and you still get to decide what happens next.
         </p>
 
         <p>
-            As your friend Astro, I hope 19 gives you better people,
+            As your friend na pogi masarap hot habulin, I hope 19 gives you better people,
             genuine happiness, fewer unnecessary plot twists, and no more
             going out of your way for someone who doesn't know your value.
         </p>
@@ -1426,7 +1507,8 @@ function startJourney(){
     const journey =
         document.getElementById("journey");
 
-    journey.classList.add("show");
+    journey.classList.add("show", "journey-opening");
+    void journey.offsetWidth;
 
     currentChapter = 0;
 
@@ -1450,10 +1532,13 @@ function renderChapter(){
     chapters.forEach(
         function(chapter,index){
 
-            chapter.classList.toggle(
-                "active",
-                index === currentChapter
-            );
+            const isActive = index === currentChapter;
+            chapter.classList.toggle("active", isActive);
+            chapter.classList.remove("chapter-transition");
+            if(isActive){
+                void chapter.offsetWidth;
+                chapter.classList.add("chapter-transition");
+            }
 
         }
     );
@@ -1629,6 +1714,7 @@ const YOUTUBE_VIDEO_ID = "lY5V4hSLWY8";
 const YOUTUBE_URL = `https://www.youtube.com/watch?v=${YOUTUBE_VIDEO_ID}`;
 
 function startOlzenSong(){
+
     const songArea = document.getElementById("songArea");
     const player = document.getElementById("youtubePlayer");
     const fallback = document.getElementById("songFallback");
@@ -1638,21 +1724,18 @@ function startOlzenSong(){
 
     songArea.classList.add("show");
     youtubeLink.href = YOUTUBE_URL;
+    player.innerHTML = "";
 
-    // YouTube Error 153 happens when an embed request has no HTTP Referer.
-    // A file:// page cannot provide one, so use a reliable YouTube fallback.
-    if (location.protocol === "file:") {
-        player.replaceChildren();
+    if(location.protocol === "file:"){
         fallback.hidden = false;
         fallbackText.textContent =
-            "This page is being opened directly as a file. YouTube requires an HTTP referrer for embedded playback, so use the button below or run this site through a local web server.";
-        status.textContent = "Ready — open the song on YouTube.";
+            "For embedded playback, open this website from a web server (GitHub Pages, Netlify, Vercel, etc.). Direct file:// pages cannot provide YouTube's required HTTP referrer.";
+        status.textContent = "Embedded playback needs a hosted website.";
         youtubeIframe = null;
         return;
     }
 
     fallback.hidden = true;
-    player.replaceChildren();
 
     const iframe = document.createElement("iframe");
     const params = new URLSearchParams({
@@ -1660,20 +1743,18 @@ function startOlzenSong(){
         controls: "1",
         rel: "0",
         playsinline: "1",
-        modestbranding: "1"
+        enablejsapi: "1"
     });
 
-    if (/^https?:$/.test(location.protocol) && location.origin) {
+    if(location.origin && /^https?:$/.test(location.protocol)){
         params.set("origin", location.origin);
     }
 
-    iframe.src =
-        `https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?${params}`;
+    iframe.src = `https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?${params.toString()}`;
     iframe.title = "Birthday song for Reighn";
     iframe.loading = "eager";
     iframe.referrerPolicy = "strict-origin-when-cross-origin";
-    iframe.allow =
-        "autoplay; encrypted-media; picture-in-picture; web-share";
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
     iframe.allowFullscreen = true;
 
     player.appendChild(iframe);
@@ -1682,15 +1763,17 @@ function startOlzenSong(){
 }
 
 function stopOlzenSong(){
+
     const player = document.getElementById("youtubePlayer");
     const songArea = document.getElementById("songArea");
     const fallback = document.getElementById("songFallback");
 
-    player.replaceChildren();
+    player.innerHTML = "";
     fallback.hidden = true;
     youtubeIframe = null;
     songArea.classList.remove("show");
 }
+
 
 /* =====================================================
    SHOW LETTER
@@ -1864,8 +1947,6 @@ function askAstro(){
    SUBTLE CELEBRATION
 ===================================================== */
 
-const particles = document.getElementById("particles");
-
 function softCelebration(){
 
     const symbols = [
@@ -1878,7 +1959,7 @@ function softCelebration(){
 
     for(
         let i = 0;
-        i < 12;
+        i < 14;
         i++
     ){
 
@@ -1932,7 +2013,13 @@ function softCelebration(){
                     "s";
 
 
-                particles.appendChild(particle);
+                document
+                    .getElementById(
+                        "particles"
+                    )
+                    .appendChild(
+                        particle
+                    );
 
 
                 setTimeout(
@@ -1952,6 +2039,32 @@ function softCelebration(){
 
 }
 
+
+/* =====================================================
+   INTERACTION EFFECTS
+===================================================== */
+
+function triggerButtonEffect(button, event){
+    if(!button) return;
+
+    button.classList.remove("ripple-active");
+    void button.offsetWidth;
+    button.classList.add("ripple-active");
+
+    if(event && button.classList.contains("btn")){
+        const rect = button.getBoundingClientRect();
+        const ripple = document.createElement("span");
+        ripple.className = "btn-ripple";
+        ripple.style.left = (event.clientX - rect.left) + "px";
+        ripple.style.top = (event.clientY - rect.top) + "px";
+        button.appendChild(ripple);
+        ripple.addEventListener("animationend", () => ripple.remove(), {once:true});
+    }
+}
+
+document.querySelectorAll(".btn").forEach(button => {
+    button.addEventListener("click", event => triggerButtonEffect(button, event));
+});
 
 /* =====================================================
    INITIAL STATE
